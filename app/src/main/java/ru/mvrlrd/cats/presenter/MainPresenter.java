@@ -32,10 +32,9 @@ public class MainPresenter extends MvpPresenter <MainView> {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 photos -> {
-                    getViewState()
-                            .updateImageView(photos[0].url);
+                  getViewState().updateImageView(photos[0].url);
 
-                    Log.d(TAG, "  new cats picture" + "   "+photos[0].url);
+                  Log.d(TAG, "  new cats picture" + "   " + photos[0].url);
                 },
                 throwable -> {
                   Log.e(TAG, "onError " + throwable + "   ");
