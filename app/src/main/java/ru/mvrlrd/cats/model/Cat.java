@@ -1,4 +1,4 @@
-package ru.mvrlrd.cats;
+package ru.mvrlrd.cats.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

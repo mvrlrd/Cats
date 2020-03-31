@@ -1,32 +1,29 @@
-package ru.mvrlrd.cats;
+package ru.mvrlrd.cats.presenter;
 
-import android.provider.Contacts;
 import android.util.Log;
-
-import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import moxy.InjectViewState;
 import moxy.MvpPresenter;
+import ru.mvrlrd.cats.model.Cat;
+import ru.mvrlrd.cats.model.retrofit.ApiHelper;
+import ru.mvrlrd.cats.views.MainView;
 
 @InjectViewState
-public class MainPresenter extends MvpPresenter<MainView> {
+public class MainPresenter extends MvpPresenter <MainView> {
     private static final String TAG = "MainPresenter";
-
-
     private ApiHelper apiHelper;
-    private Cat[] cats;
-
-
 
     public MainPresenter() {
         Log.d(TAG, "MainPresenter: ");
         apiHelper = new ApiHelper();
     }
 
-
+    @Override
+    protected void onFirstViewAttach() {
+        getAllPhoto();
+    }
 
     public void getAllPhoto() {
         Observable<Cat[]> single = apiHelper.requestServer();
@@ -35,18 +32,12 @@ public class MainPresenter extends MvpPresenter<MainView> {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 photos -> {
-                    cats = photos;
-                getViewState().updateImageView(cats[0].url);
+                  getViewState().updateImageView(photos[0].url);
 
-                  //            catUrl = photos.url;
-                  Log.d(TAG, photos[0].url + "  getAllPhoto");
+                  Log.d(TAG, "  new cats picture" + "   " + photos[0].url);
                 },
                 throwable -> {
-                  Log.e(TAG, "onError " + throwable+"   "+cats.length);
+                  Log.e(TAG, "onError " + throwable + "   ");
                 });
-    }
-
-    public Cat[] getCats() {
-        return cats;
     }
 }
