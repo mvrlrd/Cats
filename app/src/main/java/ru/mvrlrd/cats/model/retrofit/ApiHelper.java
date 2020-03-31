@@ -27,9 +27,14 @@ public class ApiHelper {
                 .addConverterFactory(gsonConverterFactory)
                 .build()
                 .create(IApiService.class);
+
+        return api.getCat(KEY).subscribeOn(Schedulers.io());
+    }
       //получаем json как массив с 1 элементом (Cat)
         // при каждом переходе по ссылке выдается рандомный элемент
         // (т.е.ссылка одна - элементы разные)
+        //????????каким образом я могу получить в Презентер сразу несколько элементов за один раз????????
+
 //[
 // {
 // "breeds":[],
@@ -39,6 +44,5 @@ public class ApiHelper {
 // "height":1080
 // }
 // ]
-        return api.getCat(KEY).subscribeOn(Schedulers.io());
-    }
+
 }
