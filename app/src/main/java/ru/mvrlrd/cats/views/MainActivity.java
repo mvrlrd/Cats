@@ -1,5 +1,4 @@
-package ru.mvrlrd.cats;
-
+package ru.mvrlrd.cats.views;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -7,14 +6,15 @@ import butterknife.OnClick;
 import moxy.MvpAppCompatActivity;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
-
+import ru.mvrlrd.cats.presenter.MainPresenter;
+import ru.mvrlrd.cats.R;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 
-public class MainActivity extends MvpAppCompatActivity implements MainView{
+public class MainActivity extends MvpAppCompatActivity implements MainView {
     @BindView(R.id.imageButton)
     ImageButton imageButton;
     @BindView(R.id.imageView)
@@ -32,9 +32,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-
-
     }
 
   @OnClick(R.id.imageButton)

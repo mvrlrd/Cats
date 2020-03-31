@@ -1,6 +1,4 @@
-package ru.mvrlrd.cats;
-
-import android.view.View;
+package ru.mvrlrd.cats.views;
 
 import moxy.MvpView;
 import moxy.viewstate.strategy.SkipStrategy;
